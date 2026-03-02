@@ -1,42 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://*.hf.space;">
-    <title>Google Docs - Biology Notes</title>
-    <link rel="icon" type="image/x-icon" href="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #fff; }
-        iframe { width: 100%; height: 100%; border: none; }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; }
+        iframe { border: none; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
 
     <iframe 
-        id="proxy-frame"
-        src="https://eshaan2013-bolt-unblocker-web.hf.space" 
+        src="https://YOUR-USERNAME-YOUR-SPACE.hf.space" 
         sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
     ></iframe>
 
-    <script>
-        // THE KILL SWITCH: This stops the proxy from being able to target the 'top' window
-        const frame = document.getElementById('proxy-frame');
-        
-        // This is a 'Frame Buster Buster'
-        // It prevents the internal proxy script from changing YOUR url
-        var prevent_bust = 0;
-        window.onbeforeunload = function() { prevent_bust++; }
-        
-        setInterval(function() {
-            if (prevent_bust > 0) {
-                prevent_bust -= 2;
-                // If the proxy tries to reload the page, we force it back to 'self'
-                window.top.location = 'about:blank'; 
-                setTimeout(function() {
-                    location.reload();
-                }, 10);
-            }
-        }, 1);
-    </script>
 </body>
 </html>
