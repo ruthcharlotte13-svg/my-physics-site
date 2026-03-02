@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Google Docs</title>
+    <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://*.hf.space;">
+    <title>Google Docs - Biology Notes</title>
     <link rel="icon" type="image/x-icon" href="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #fff; }
@@ -14,26 +15,28 @@
     <iframe 
         id="proxy-frame"
         src="https://eshaan2013-bolt-unblocker-web.hf.space" 
-        sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-scripts allow-same-origin"
+        sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
     ></iframe>
 
     <script>
-        // THE FIX: This prevents the "Inception" loop
+        // THE KILL SWITCH: This stops the proxy from being able to target the 'top' window
         const frame = document.getElementById('proxy-frame');
         
-        // This detects if the proxy is trying to reload the top page
-        window.addEventListener('message', function(e) {
-            if (e.data === 'reload') {
-                console.log("Loop detected and stopped.");
-                e.preventDefault();
+        // This is a 'Frame Buster Buster'
+        // It prevents the internal proxy script from changing YOUR url
+        var prevent_bust = 0;
+        window.onbeforeunload = function() { prevent_bust++; }
+        
+        setInterval(function() {
+            if (prevent_bust > 0) {
+                prevent_bust -= 2;
+                // If the proxy tries to reload the page, we force it back to 'self'
+                window.top.location = 'about:blank'; 
+                setTimeout(function() {
+                    location.reload();
+                }, 10);
             }
-        });
-
-        // This keeps the school filter from seeing the Hugging Face URL
-        history.pushState(null, document.title, location.href);
-        window.addEventListener('popstate', function (event) {
-            history.pushState(null, document.title, location.href);
-        });
+        }, 1);
     </script>
 </body>
 </html>
