@@ -1,25 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Docs - Algebra Notes</title>
+    <title>Google Docs</title>
     <link rel="icon" type="image/x-icon" href="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">
-    
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            background-color: #ffffff;
-        }
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-        }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #fff; }
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
@@ -28,20 +15,25 @@
         id="proxy-frame"
         src="https://eshaan2013-bolt-unblocker-web.hf.space" 
         sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-scripts allow-same-origin"
-        allow="fullscreen; clipboard-read; clipboard-write"
     ></iframe>
 
     <script>
-        // This script prevents the proxy from trying to redirect the WHOLE page
-        window.onbeforeunload = function() {
-            return "Are you sure you want to leave?";
-        };
-        
-        // Anti-Inception: Keeps the focus on the search results, not the frame
+        // THE FIX: This prevents the "Inception" loop
         const frame = document.getElementById('proxy-frame');
-        frame.onload = function() {
-            console.log("Stealth Mask Active.");
-        };
+        
+        // This detects if the proxy is trying to reload the top page
+        window.addEventListener('message', function(e) {
+            if (e.data === 'reload') {
+                console.log("Loop detected and stopped.");
+                e.preventDefault();
+            }
+        });
+
+        // This keeps the school filter from seeing the Hugging Face URL
+        history.pushState(null, document.title, location.href);
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, document.title, location.href);
+        });
     </script>
 </body>
 </html>
