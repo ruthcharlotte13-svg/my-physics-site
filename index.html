@@ -1,44 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Class Research Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolt Unblocker</title>
     <style>
-        body { font-family: system-ui, sans-serif; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #f0f2f5; color: #1c1e21; }
-        .box { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; }
-        button { background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 20px; }
-        button:hover { background: #0056b3; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>Biology Project Resources</h2>
-        <p>Click below to access the external research database.</p>
-        <button onclick="launchProxy()">Open Database</button>
-    </div>
-
-    <script>
-        function launchProxy() {
-            // This creates a window with NO URL bar and NO history
-            // The school filter often loses track of 'about:blank' tabs
-            var win = window.open('about:blank', '_blank');
-            
-            // This is the direct link to your Hugging Face Space
-            var url = "https://eshaan2013-bolt-unblocker-web.hf.space";
-            
-            win.document.body.style.margin = '0';
-            win.document.body.style.height = '100vh';
-            
-            var iframe = win.document.createElement('iframe');
-            iframe.style.border = 'none';
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.src = url;
-            
-            // This tells the proxy it is NOT in a frame, killing the inception loop
-            iframe.setAttribute("referrerpolicy", "no-referrer");
-            
-            win.document.body.appendChild(iframe);
-        }
-    </script>
+    <iframe src="https://username-spacename.hf.space"></iframe>
 </body>
 </html>
