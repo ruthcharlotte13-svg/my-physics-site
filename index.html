@@ -2,16 +2,25 @@
 <html>
 <head>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #000; }
         iframe { border: none; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
 
     <iframe 
-        src="https://YOUR-USERNAME-YOUR-SPACE.hf.space" 
+        id="main-frame"
+        src="https://eshaan2013-bolt-unblocker-web.hf.space" 
         sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
     ></iframe>
+
+    <script>
+        // This stops the proxy from detecting its own parent URL
+        Object.defineProperty(window, 'location', {
+            value: window.location,
+            writable: false
+        });
+    </script>
 
 </body>
 </html>
