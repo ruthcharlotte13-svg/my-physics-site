@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Biology Project - Cells</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #000; }
-        iframe { border: none; width: 100%; height: 100%; }
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f9f9f9; }
+        .btn { padding: 15px 30px; background: #4285f4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <iframe 
-        id="main-frame"
-        src="https://eshaan2013-bolt-unblocker-web.hf.space" 
-        sandbox="allow-forms allow-modals allow-popups allow-scripts allow-same-origin"
-    ></iframe>
+    <a href="https://eshaan2013-bolt-unblocker-web.hf.space" id="launch" class="btn">View Project Data</a>
 
     <script>
-        // This stops the proxy from detecting its own parent URL
-        Object.defineProperty(window, 'location', {
-            value: window.location,
-            writable: false
-        });
+        // This is the "Stealth" secret. 
+        // Instead of a loop, it opens the proxy in a 'Clean' window 
+        // that school filters often fail to associate with Hugging Face.
+        document.getElementById('launch').onclick = function(e) {
+            e.preventDefault();
+            var win = window.open();
+            win.document.body.style.margin = '0';
+            win.document.body.style.height = '100vh';
+            var iframe = win.document.createElement('iframe');
+            iframe.style.border = 'none';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.src = this.href;
+            win.document.body.appendChild(iframe);
+        };
     </script>
-
 </body>
 </html>
