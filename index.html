@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Biology Project - Cells</title>
+    <title>Class Research Portal</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f9f9f9; }
-        .btn { padding: 15px 30px; background: #4285f4; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        body { font-family: system-ui, sans-serif; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #f0f2f5; color: #1c1e21; }
+        .box { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; }
+        button { background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 20px; }
+        button:hover { background: #0056b3; }
     </style>
 </head>
 <body>
-    <a href="https://eshaan2013-bolt-unblocker-web.hf.space" id="launch" class="btn">View Project Data</a>
+    <div class="box">
+        <h2>Biology Project Resources</h2>
+        <p>Click below to access the external research database.</p>
+        <button onclick="launchProxy()">Open Database</button>
+    </div>
 
     <script>
-        // This is the "Stealth" secret. 
-        // Instead of a loop, it opens the proxy in a 'Clean' window 
-        // that school filters often fail to associate with Hugging Face.
-        document.getElementById('launch').onclick = function(e) {
-            e.preventDefault();
-            var win = window.open();
+        function launchProxy() {
+            // This creates a window with NO URL bar and NO history
+            // The school filter often loses track of 'about:blank' tabs
+            var win = window.open('about:blank', '_blank');
+            
+            // This is the direct link to your Hugging Face Space
+            var url = "https://eshaan2013-bolt-unblocker-web.hf.space";
+            
             win.document.body.style.margin = '0';
             win.document.body.style.height = '100vh';
+            
             var iframe = win.document.createElement('iframe');
             iframe.style.border = 'none';
             iframe.style.width = '100%';
             iframe.style.height = '100%';
-            iframe.src = this.href;
+            iframe.src = url;
+            
+            // This tells the proxy it is NOT in a frame, killing the inception loop
+            iframe.setAttribute("referrerpolicy", "no-referrer");
+            
             win.document.body.appendChild(iframe);
-        };
+        }
     </script>
 </body>
 </html>
