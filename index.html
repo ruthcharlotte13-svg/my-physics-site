@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Biology Database</title>
+    <title>Biology Project Portal</title>
     <style>
-        body { background: #000; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
-        #start-btn { padding: 20px 40px; background: #222; border: 1px solid #444; color: #fff; cursor: pointer; font-size: 1.2rem; border-radius: 8px; }
-        #start-btn:hover { background: #333; }
+        body { background: #111; color: #eee; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        #launch-btn { padding: 20px 40px; background: #333; border: 1px solid #555; color: #fff; cursor: pointer; font-size: 1.1rem; border-radius: 12px; transition: 0.3s; }
+        #launch-btn:hover { background: #444; border-color: #007bff; }
     </style>
 </head>
 <body>
-    <button id="start-btn">Initialize Research Database</button>
+    <button id="launch-btn">Open Research Database</button>
 
     <script>
-        document.getElementById('start-btn').onclick = function() {
-            // 1. Create a completely empty new tab
+        document.getElementById('launch-btn').onclick = function() {
+            // This creates a brand new window to kill the inception loop
             var win = window.open('about:blank', '_blank');
-            
-            // 2. Define your Hugging Face link
             var proxyUrl = "https://YOUR-USERNAME-YOUR-SPACE.hf.space";
             
-            // 3. Instead of an iframe, we write a "Meta Refresh" to the new tab.
-            // This makes the new tab THINK it navigated there naturally.
+            // We write the proxy into the NEW window so it thinks it's the 'top' page
             win.document.write(`
-                <!DOCTYPE html>
                 <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Research Portal</title>
-                    <style>body,html{margin:0;padding:0;height:100%;overflow:hidden;}</style>
-                </head>
-                <body>
+                <head><title>Database Loading...</title></head>
+                <body style="margin:0;padding:0;overflow:hidden;">
                     <iframe src="${proxyUrl}" style="border:none;width:100%;height:100%;" referrerpolicy="no-referrer"></iframe>
                 </body>
                 </html>
