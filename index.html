@@ -1,15 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bolt Unblocker</title>
+    <title>Biology Database</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
+        body { background: #000; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
+        #start-btn { padding: 20px 40px; background: #222; border: 1px solid #444; color: #fff; cursor: pointer; font-size: 1.2rem; border-radius: 8px; }
+        #start-btn:hover { background: #333; }
     </style>
 </head>
 <body>
-    <iframe src="https://eshaan2013-bolt-unblocker-web.hf.space"></iframe>
+    <button id="start-btn">Initialize Research Database</button>
+
+    <script>
+        document.getElementById('start-btn').onclick = function() {
+            // 1. Create a completely empty new tab
+            var win = window.open('about:blank', '_blank');
+            
+            // 2. Define your Hugging Face link
+            var proxyUrl = "https://YOUR-USERNAME-YOUR-SPACE.hf.space";
+            
+            // 3. Instead of an iframe, we write a "Meta Refresh" to the new tab.
+            // This makes the new tab THINK it navigated there naturally.
+            win.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Research Portal</title>
+                    <style>body,html{margin:0;padding:0;height:100%;overflow:hidden;}</style>
+                </head>
+                <body>
+                    <iframe src="${proxyUrl}" style="border:none;width:100%;height:100%;" referrerpolicy="no-referrer"></iframe>
+                </body>
+                </html>
+            `);
+            win.document.close();
+        };
+    </script>
 </body>
 </html>
