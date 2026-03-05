@@ -1,33 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Biology Project Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolt Unblocker</title>
     <style>
-        body { background: #111; color: #eee; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        #launch-btn { padding: 20px 40px; background: #333; border: 1px solid #555; color: #fff; cursor: pointer; font-size: 1.1rem; border-radius: 12px; transition: 0.3s; }
-        #launch-btn:hover { background: #444; border-color: #007bff; }
+        body, html {
+            margin: 0; padding: 0; height: 100%; overflow: hidden;
+        }
+        iframe {
+            width: 100%; height: 100%; border: none;
+        }
     </style>
 </head>
 <body>
-    <button id="launch-btn">Open Research Database</button>
-
-    <script>
-        document.getElementById('launch-btn').onclick = function() {
-            // This creates a brand new window to kill the inception loop
-            var win = window.open('about:blank', '_blank');
-            var proxyUrl = "https://zstpvk-8080.csb.app";
-            
-            // We write the proxy into the NEW window so it thinks it's the 'top' page
-            win.document.write(`
-                <html>
-                <head><title>Database Loading...</title></head>
-                <body style="margin:0;padding:0;overflow:hidden;">
-                    <iframe src="${proxyUrl}" style="border:none;width:100%;height:100%;" referrerpolicy="no-referrer"></iframe>
-                </body>
-                </html>
-            `);
-            win.document.close();
-        };
-    </script>
+    <iframe src="https://zstpvk-8080.csb.app"></iframe>
 </body>
 </html>
